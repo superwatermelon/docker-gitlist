@@ -1,0 +1,13 @@
+language: bash
+
+services:
+  - docker
+
+script:
+  - make
+
+deploy:
+  provider: script
+  script: make release
+  on:
+    tags: true

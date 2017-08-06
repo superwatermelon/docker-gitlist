@@ -1,6 +1,6 @@
 gitlist_version := 0.5.0
 
-.PHONY: build nginx nginx-test php-fpm php-fpm-test example
+.PHONY: build nginx nginx-test php-fpm php-fpm-test example release
 
 default: build nginx nginx-test php-fpm php-fpm-test
 
@@ -21,3 +21,5 @@ php-fpm-release:
 
 example:
 	make -C example
+
+release: nginx-release php-fpm-release
