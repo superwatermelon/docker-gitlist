@@ -23,7 +23,7 @@ test:
 	image=$(docker_image):$(gitlist_version) bats test/suite.bats
 
 release:
-	docker tag $(docker_image):$(tag) $(docker_image):latest
+	docker tag $(docker_image):$(gitlist_version) $(docker_image):latest
 	../scripts/docker-login
 	docker push $(docker_image):$(gitlist_version)
 	docker push $(docker_image):latest
