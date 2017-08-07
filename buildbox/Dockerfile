@@ -1,8 +1,9 @@
-FROM alpine:latest
+FROM alpine:3.6
 
 ARG gitlist_version
 
-RUN apk add --no-cache git php5 php5-openssl php5-json php5-phar php5-zlib openssl ca-certificates && \
+RUN apk add --no-cache git openssl ca-certificates \
+  php7 php7-openssl php7-json php7-phar php7-zlib php7-iconv php7-mbstring && \
   wget -O gitlist-${gitlist_version}.tar.gz https://github.com/klaussilveira/gitlist/archive/${gitlist_version}.tar.gz && \
   tar -xzvf gitlist-${gitlist_version}.tar.gz && \
   cd gitlist-${gitlist_version} && \
