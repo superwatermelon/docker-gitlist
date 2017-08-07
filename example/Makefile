@@ -9,10 +9,10 @@ example_repo := $(build_dir)/example
 .PHONY: default clean
 
 default: $(example_repo)
-	docker run --rm --detach --volume $(shell pwd)/$(repos_dir):/var/git \
+	docker run --rm --detach --volume $(shell pwd)/$(repos_dir):/var/git:ro \
 		--name gitlist-php-fpm $(php_fpm_image):$(gitlist_version)
 	docker run --rm --detach --publish 8080:80 --link gitlist-php-fpm:gitlist-php-fpm \
-		--name gitlist-nginx $(docker_image):$(gitlist_version)
+		--name gitlist-nginx $(nginx_image):$(gitlist_version)
 
 $(build_dir):
 	mkdir -p $(build_dir)

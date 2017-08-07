@@ -22,4 +22,7 @@ php-fpm-release:
 example:
 	make -C example
 
+example-clean:
+	make -C example clean
+
 release: nginx-release php-fpm-release
