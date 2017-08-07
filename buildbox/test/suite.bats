@@ -7,7 +7,6 @@
 
 @test "dist tarball is a valid tarball" {
   run tar -C build -xzvf "$dist"
-  echo "$output"
   [ "$status" -eq 0 ]
 }
 
@@ -18,6 +17,5 @@
 
 @test "sources tarball is a valid tarball" {
   run tar -C build -xzvf "$sources"
-  echo "$output"
   [ "$status" -eq 0 ]
 }
