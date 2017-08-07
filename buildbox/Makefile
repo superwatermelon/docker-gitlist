@@ -1,18 +1,22 @@
 docker_image := superwatermelon/gitlist-buildbox
 gitlist_version := 0.5.0
-gitlist_dist := build/gitlist-dist-$(gitlist_version).tar.gz
-gitlist_sources := build/gitlist-$(gitlist_version).tar.gz
+build_dir := build
+gitlist_dist := $(build_dir)/gitlist-dist-$(gitlist_version).tar.gz
+gitlist_sources := $(build_dir)/gitlist-$(gitlist_version).tar.gz
 
 .PHONY: default image test
 
 default: $(gitlist_dist) $(gitlist_sources) test
 
-$(gitlist_sources): image
+$(build_dir):
+	mkdir -p $(build_dir)
+
+$(gitlist_sources): $(build_dir) image
 	docker run --rm --volume $(shell pwd)/build:/var/build \
 		$(docker_image):$(gitlist_version) \
 		cp gitlist-$(gitlist_version).tar.gz /var/build/
 
-$(gitlist_dist): image
+$(gitlist_dist): $(build_dir) image
 	docker run --rm --volume $(shell pwd)/build:/var/build \
 		$(docker_image):$(gitlist_version) \
 		cp gitlist-dist-$(gitlist_version).tar.gz /var/build/
